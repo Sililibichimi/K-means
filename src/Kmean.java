@@ -59,11 +59,10 @@ public class Kmean {
             DataSet data = new DataSet("KmeanAgl/wine.csv");
             // Remove prior classfications attr if it exists
             data.removeAttr("Class");
-            data.printData();
-//            int k = ElbowMethodForKMeans.calK(data);
-//            System.out.println(k);
-//            kmeans(data, k);
-//            data.createCsvOutput("KmeanAgl/output.csv");
+           int k = ElbowMethodForKMeans.calK(data);
+           System.out.println(k);
+           kmeans(data, k);
+           data.createCsvOutput("KmeanAgl/output.csv");
 
         }
         catch (Exception e) {
