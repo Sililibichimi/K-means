@@ -1,0 +1,36 @@
+---
+title: "Visualize_data_kmeans"
+author: "Nguyễn Đức Sĩ"
+date: "2024-03-27"
+output: html_document
+---
+
+```{r cars}
+library(ggpubr)
+library(factoextra)
+
+
+data = read.csv("G:\\Program_File\\java\\KmeanAgl\\sample.csv")
+View(data)
+
+# Scale data
+data_scale = scale(data)
+View(data_scale)
+
+# Distance
+data = dist(data_scale)
+
+# Calculate number of clusters
+fviz_nbclust(data_scale, kmeans, method = "wss") + labs(subtitle = "Elbow method")
+
+# kmeans
+
+km.out <- kmeans(data_scale, center = 3, nstart = 1500)
+print(km.out)
+
+# Visualize the clustering aglorithm results
+km.cluster = km.out$cluster
+
+fviz_cluster(list(data = data_scale, cluster = km.cluster))
+
+```
